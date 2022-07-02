@@ -25,20 +25,12 @@ RUN /ardupilot/Tools/environment_install/install-prereqs-ubuntu.sh -y
 RUN sudo apt-get clean \
     && sudo rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN sudo apt-get install -y cmake
-
 WORKDIR /ardupilot
-RUN git clone git://github.com/JSBSim-Team/jsbsim.git 
 
-RUN cd jsbsim && mkdir build && cd build && \
-cmake -DCMAKE_CXX_FLAGS_RELEASE="-O3 -march=native -mtune=native" -DCMAKE_C_FLAGS_RELEASE="-O3 -march=native -mtune=native" -DCMAKE_BUILD_TYPE=Release .. && \
-make -j2 
-
-RUN make sitl
+RUN ./waf distclean && ./waf configure --board sitl && ./waf copter
 
 ENV CCACHE_MAXSIZE=1G
 ENV PATH /usr/lib/ccache:/ardupilot/Tools:${PATH}
 ENV PATH /ardupilot/Tools/autotest:${PATH}
 ENV PATH /ardupilot/.local/bin:${PATH}
 ENV PATH /ardupilot/jsbsim/build/src:${PATH}
-
