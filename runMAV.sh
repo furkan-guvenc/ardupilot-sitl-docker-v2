@@ -1,6 +1,6 @@
 #! /bin/bash
 
-if [ $# -ne 1 ]
+if [ $# -lt 1 ]
 then
   echo "Usage: runMAV.sh <system_id> <gcs_host1>:<gcs_port1> <gcs_host2>:<gcs_port2> ..."
   exit 1
