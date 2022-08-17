@@ -1,7 +1,5 @@
 # ArduPilot SITL Docker image 
 
-_Eduardo R. B. Marques_ [[edrdo](https://github.com/edrdo)]
-
 ## Description
 
 This repository contains a Dockerfile for running [ArduPilot in SITL mode](https://ardupilot.org/dev/docs/sitl-simulator-software-in-the-loop.html) and 
